@@ -55,9 +55,22 @@ function showCart() {
 function removeItemFromCart(event) {
 
   // TODO: When a delete link is clicked, use cart.removeItem to remove the correct item
+  cart.removeItem(event.target.value);
   // TODO: Save the cart back to local storage
-  // TODO: Re-draw the cart table
+  if(localStorage.cart){ //if there is a data then do if statement 
+    let returnedData=JSON.parse(localStorage.cart);// this returned obj is a literal obj so we need a way to change it to constructor.
+    console.log(returnedData);
+    for (let i = 0; i < returnedData.length; i++)// cause the returned data is an literal obj holds data
+    {
+      new Chart (returnedData[i].name,returnedData[i].filePath, returnedData[i].product, returnedData[i].quantity);
 
+    }
+
+  // TODO: Re-draw the cart table
+  showCart();
+
+
+}
 }
 
 // This will initialize the page and draw the cart on screen
